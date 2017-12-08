@@ -12,9 +12,10 @@ void input(int& amountLeft);
 
 void computeCoins(int coinValue, int& number, int& amountLeft);
 //Precondition: coinValue is >= 0 and < 100, amountLeft is > 0 and < 100.
-//Postcondition: number has been set equal to the maximum number of coin denominations coinValue
-//cents that can be obtained from amountLeft cents. amountLeft has beed
-//decreased by the value of the coins; that is, decreased by number * coinValue.
+//Postcondition: number has been set equal to the maximum number of coin
+//denominations coinValue cents that can be obtained from amountLeft cents.
+//amountLeft has beed decreased by the value of the coins; that is, decreased
+//by number * coinValue.
 
 void output(int coinValue, int number, int amountLeft);
 //Outputs the denomination of coins for the amount of original change.
@@ -27,78 +28,78 @@ int getCD(int cD);
 
 int main()
 {
-	char ans;
+    char ans;
 
-	do
-	{
-	   int n, aL;
+    do
+    {
+        int n, aL;
 
-	   input(aL);
+        input(aL);
 
-	   for (int i = 1; i <= 3; i++)
-	   {
-		   computeCoins(i, n, aL);
-		   output(i, n, aL);
-	   }
+        for (int i = 1; i <= 3; i++)
+        {
+            computeCoins(i, n, aL);
+            output(i, n, aL);
+        }
 
-	   cout<<"Start over? (y/n): ";
-	   cin>>ans; 
+        cout<<"Start over? (y/n): ";
+        cin>>ans; 
 
-	   if (ans == 'y' || ans == 'Y')
-		   cout<<"\n\n";
-	}while(ans == 'y' || ans == 'Y');
+        if (ans == 'y' || ans == 'Y')
+            cout<<"\n\n";
+    }while(ans == 'y' || ans == 'Y');
 
-	return 0;
+    return 0;
 }
 
 void input(int& amountLeft)
 {
-	cout<<"Enter in amount of change: ";
-	cin>>amountLeft;
-	cout<<endl;
+    cout<<"Enter in amount of change: ";
+    cin>>amountLeft;
+    cout<<endl;
 }
 
 void computeCoins(int coinValue, int& number, int& amountLeft)
 {
-	coinValue = getCD(coinValue);
-	number = amountLeft/coinValue;
-	amountLeft = amountLeft - (coinValue*number);
+    coinValue = getCD(coinValue);
+    number = amountLeft/coinValue;
+    amountLeft = amountLeft - (coinValue*number);
 }
 
 void output(int coinValue, int number, int amountLeft)
 {
-	if (coinValue == 1)
-	{
-		coinValue = getCD(coinValue);
-		int amountOfChange = (number*coinValue) + amountLeft;
-		cout<<amountOfChange<<" cents can be given as\n";
-	}
-	else
-		coinValue = getCD(coinValue);
+    if (coinValue == 1)
+    {
+        coinValue = getCD(coinValue);
+        int amountOfChange = (number*coinValue) + amountLeft;
+        cout<<amountOfChange<<" cents can be given as\n";
+    }
+    else
+        coinValue = getCD(coinValue);
 
-	if (coinValue == 25 && number > 0)
-		cout<<number<<" quarter(s) ";
-	else if (coinValue == 10 && number > 0)
-		cout<<number<<" dime(s) ";
-	else if (coinValue == 1 && number > 0)
-		cout<<number<<" penny(pennies)\n\n";
-	else 
-		return;
+    if (coinValue == 25 && number > 0)
+        cout<<number<<" quarter(s) ";
+    else if (coinValue == 10 && number > 0)
+        cout<<number<<" dime(s) ";
+    else if (coinValue == 1 && number > 0)
+        cout<<number<<" penny(pennies)\n\n";
+    else 
+        return;
 }
 
 /*
-void clearScreen()
-{
-	cout<<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-}
-*/
+   void clearScreen()
+   {
+   cout<<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+   }
+   */
 
 int getCD(int cD)
 {
-	if (cD == 1)
-		return 25;
-	else if(cD == 2)
-		return 10;
-	else 
-		return 1;
+    if (cD == 1)
+        return 25;
+    else if(cD == 2)
+        return 10;
+    else 
+        return 1;
 }
